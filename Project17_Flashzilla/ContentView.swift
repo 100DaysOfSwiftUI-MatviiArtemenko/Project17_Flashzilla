@@ -67,9 +67,10 @@ struct ContentView: View {
                         isShowingEditScreen = true
                     } label: {
                         Image(systemName: "plus.circle")
-                            .padding()
+                            .padding(10)
                             .background(.black.opacity(0.7))
                             .clipShape(Circle())
+                            .padding()
                     }
                 }
                 Spacer()
@@ -150,20 +151,25 @@ struct ContentView: View {
     }
     
     func removeCard(at index: Int) {
-        guard index >= 0 else {
-            return
-        }
-        cards.remove(at: index)
-        
-        if cards.isEmpty {
-            isActive = false
+        withAnimation {
+            guard index >= 0 else {
+                return
+            }
+            cards.remove(at: index)
+            
+            if cards.isEmpty {
+                isActive = false
+                
+            }
         }
     }
     
     func resetCards() {
-        timeRemaining = 100
-        isActive = true
-        loadData()
+        withAnimation {
+            timeRemaining = 100
+            isActive = true
+            loadData()
+        }
     }
 }
 

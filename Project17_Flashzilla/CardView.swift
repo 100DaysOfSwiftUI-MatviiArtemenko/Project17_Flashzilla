@@ -28,8 +28,8 @@ struct CardView: View {
                 .background(
                     differentiateWithoutColor
                         ? nil
-                        : RoundedRectangle(cornerRadius: 25, style: .continuous)
-                        .fill(offset.width > 0 ? .green : .red)
+                    : RoundedRectangle(cornerRadius: 25, style: .continuous)
+                        .fill(offset.width > 0 ? .green : (offset.width == 0 ? .clear : .red))
                 )
                 .shadow(radius: 10)
 
@@ -54,7 +54,7 @@ struct CardView: View {
         }
         .frame(width: 450, height: 250)
         .rotationEffect(.degrees(Double(offset.width / 5)))
-        .offset(x: offset.width * 5, y: 0)
+        .offset(x: offset.width * 4, y: 0)
         .opacity(2 - Double(abs(offset.width / 50)))
         .accessibilityAddTraits(.isButton)
         .gesture(
